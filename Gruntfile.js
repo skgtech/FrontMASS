@@ -211,6 +211,7 @@ module.exports = function (grunt) {
           src: [
             'dist/js/**/*.js',
             'dist/css/**/*.css',
+            'dist/stylesheets/**/*.css',
             'dist/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
             'dist/fonts/**/*.{eot*,otf,svg,ttf,woff}'
           ]
@@ -220,7 +221,7 @@ module.exports = function (grunt) {
     buildcontrol: {
       dist: {
         options: {
-          remote: '../',
+          remote: 'origin',
           branch: 'gh-pages',
           commit: true,
           push: true
