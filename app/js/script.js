@@ -110,204 +110,6 @@ $(document).ready(function () {
         directionNav: true,
         controlNav: false
     });
-    /*===================================================================================*/
-    /*  PROFOLIO                                                                         */
-    /*===================================================================================*/
-    var portfolio = portfolio || {},
-        $portfolioItems = $('#portfolio-items'),
-        $filtrable = $('#portfolio-filter');
-    /*===================================================================================*/
-    /*  PROFOLIO INIT FULL WIDTH                                                         */
-    /*===================================================================================*/
-    portfolio.fullWidth = function () {
-        $(window).load(function () {
-            $portfolioItems.isotope({
-                animationEngine: 'best-available',
-                animationOptions: {
-                    duration: 250,
-                    easing: 'easeInOutSine',
-                    queue: false
-                }
-            });
-        });
-        $filtrable.find('a').click(function (e) {
-            var currentOption = $(this).data('cat');
-            $filtrable.find('a').removeClass('active');
-            $(this).addClass('active');
-            if (currentOption !== '*') {
-                currentOption = '.' + currentOption;
-            }
-            $portfolioItems.isotope({
-                filter: currentOption
-            });
-            return false;
-        });
-    };
-    /*===================================================================================*/
-    /*  PROFOLIO INIT AJAX                                                               */
-    /*===================================================================================*/
-    portfolio.ajax = function () {
-        function portfolioInit() {
-            var newHash = "",
-                $mainContent = $("#portfolio-ajax"),
-                $pageWrap = $("#portfolio-wrap"),
-                root = '#!projects/',
-                rootLength = root.length,
-                url;
-            $portfolioItems.find(".full-page").click(function () {
-                window.location.hash = $(this).attr("href");
-                $(document.body).addClass('noscroll' );
-                return false;
-            });
-            //binding keypress function
-            $("#portfolio-wrap").bind("keydown", function (e) {
-                if (e.keyCode == 37) {
-                    $('.single-portfolio').remove();
-                    window.location.hash = $("#portfolio-items .current").next().find('.full-page').attr("href");
-                    return false;
-                } else if (e.keyCode == 39) {
-                    $('.single-portfolio').remove();
-                    window.location.hash = $("#portfolio-items .current").prev().find('.full-page').attr("href");
-                    return false;
-                } else if (e.keyCode == 27) {
-                    $('#portfolio-wrap').fadeOut('100', function () {
-                        $('.single-portfolio').remove();
-                    });
-                    history.pushState('', document.title, window.location.pathname);
-                    window.location.hash = '#_';
-                    return false;
-                }
-            });
-            $(window).bind('hashchange', function () {
-                newHash = window.location.hash;
-                url = newHash.replace(/[#\!]/g, '');
-                if (newHash.substr(0, rootLength) == root) {
-                    if ($pageWrap.is(':hidden')) {
-                        $pageWrap.slideDown('3000', function () {});
-                    }
-                    $pageWrap.niceScroll({
-                        cursorcolor: "#666",
-                        cursorwidth: 6,
-                        cursorborder: 0,
-                        cursorborderradius: 0
-                    });
-                    $pageWrap.append('<div id="preloader"></div>');
-                    $mainContent.load(url + " .single-portfolio", function (xhr, statusText, request) {
-                        if (statusText == "success") {
-                            setTimeout(function () {
-                                $(".slider_container").flexslider({
-                                    directionNav: true,
-                                    controlNav: false
-                                });
-                                $('.single-portfolio .media-container').fitVids();
-                                $pageWrap.find('#preloader').remove();
-                            }, 300);
-                        }
-                        if (statusText == "error") {
-                            $mainContent.html('<div class="row pad-top pad-bottom"><div class="col-md-12 pad-top pad-bottom"><div class="alert-message error"><p>The Content cannot be loaded.</p></div></div></div>');
-                            $pageWrap.find('#preloader').remove();
-                        }
-                        closeProject();
-                        nextProject();
-                        prevProject();
-                    });
-                    $("#portfolio-items article").removeClass("current");
-                    $("#portfolio-items .full-page[href='" + newHash + "']").parent().addClass("current");
-                    var projectIndex = $('#portfolio-items').find('article.current').index();
-                    var projectLength = $('#portfolio-items article').length - 1;
-                    if (projectIndex == projectLength) {
-                        jQuery('#next-project').addClass('disabled');
-                        jQuery('#prev-project').removeClass('disabled');
-                    } else if (projectIndex == 0) {
-                        jQuery('#prev-project').addClass('disabled');
-                        jQuery('#next-project').removeClass('disabled');
-                    } else {
-                        jQuery('#prev-project, #next-project').removeClass('disabled');
-                    }
-                } else if (newHash == '') {
-                    $('#portfolio-wrap').fadeOut('100', function () {
-                        $('.single-portfolio').remove();
-                    });
-                }
-            });
-            $(window).trigger('hashchange');
-        }
-
-        function closeProject() {
-            $('#close-project').on('click', function () {
-                $('#portfolio-wrap').fadeOut('100', function () {
-                    $('.single-portfolio').remove();
-                });
-                history.pushState('', document.title, window.location.pathname);
-                window.location.hash = '#_';
-                $(document.body).removeClass('noscroll' );
-                return false;
-            });
-        }
-
-        function nextProject() {
-            $("#next-project").on("click", function () {
-                $('.single-portfolio').remove();
-                window.location.hash = $("#portfolio-items .current").next().find('.full-page').attr("href");
-                return false;
-            });
-        }
-
-        function prevProject() {
-            $("#prev-project").on("click", function () {
-                $('.single-portfolio').remove();
-                window.location.hash = $("#portfolio-items .current").prev().find('.full-page').attr("href");
-                return false;
-            });
-        }
-        if ($portfolioItems.length) {
-            portfolioInit();
-        }
-    };
-
-    function initColorBox() {
-        //How to assign the Colorbox event to elements
-				$(".cb-img").colorbox({rel:'cb-img', transition:"fade", width:"80%", height:"80%"});
-				$(".ajax").colorbox();
-				$(".cb-youtube").colorbox({iframe:true, innerWidth:"80%", innerHeight:"80%"});
-				$(".cb-vimeo").colorbox({iframe:true, innerWidth:"80%", innerHeight:"80%"});
-				$(".cb-iframe").colorbox({iframe:true, width:"80%", height:"80%"});
-				$(".callbacks").colorbox({
-					onOpen:function(){ alert('onOpen: colorbox is about to open'); },
-					onLoad:function(){ alert('onLoad: colorbox has started to load the targeted content'); },
-					onComplete:function(){ alert('onComplete: colorbox has displayed the loaded content'); },
-					onCleanup:function(){ alert('onCleanup: colorbox has begun the close process'); },
-					onClosed:function(){ alert('onClosed: colorbox has completely closed'); }
-				});
-     }    
-    portfolio.fullWidth();
-    portfolio.ajax();
-    initColorBox();
-    
-    /*Pie Chart*/
-    $(function () {
-        $('.chart').appear(function () {
-            $('.chart').easyPieChart({
-                easing: 'easeOutBounce',
-                barColor: "#838590",
-                size: "150",
-                lineWidth: 15,
-                animate: 2000,
-                onStep: function (from, to, percent) {
-                    $(this.el).find('.percent').text(Math.round(percent));
-                }
-            });
-        });
-    });
-
-    /*Skill*/
-    $('.skillBar li').each(function () {
-        var b = $(this).find("span").attr("data-width");
-        $(this).find("span").css({
-            width: b + "%"
-        })
-    });
-
     /* Start Package select */
 
     $(function () {
@@ -348,7 +150,7 @@ $(document).ready(function () {
             },
             success: function (data) {
                 form.fadeOut(300);
-                alertx.html(data).fadeIn(1000); // fade in response data     
+                alertx.html(data).fadeIn(1000); // fade in response data
                 setTimeout(function () {
                     alertx.html(data).fadeOut(300);
                     $('#name, #email,#phone, #message').val('');
@@ -478,7 +280,7 @@ $(function () {
         });
     });
 });
-// Swiper About Slide ------------------------------------------------------ //	
+// Swiper About Slide ------------------------------------------------------ //
 var mySwiper = new Swiper('.swiper-about', {
         mode: 'horizontal',
         loop: true,
@@ -488,7 +290,7 @@ var mySwiper = new Swiper('.swiper-about', {
         pagination: '.pagination-about',
         paginationClickable: true
     })
-    // Swiper Testimonial ------------------------------------------------------ //	
+    // Swiper Testimonial ------------------------------------------------------ //
 var mySwiper = new Swiper('.swiper-testimonial', {
         mode: 'horizontal',
         loop: true,
@@ -501,47 +303,47 @@ var mySwiper = new Swiper('.swiper-testimonial', {
     /*============================================
 	Clients - Carrousel
 	==============================================*/
-    //options( 1 - ON , 0 - OFF)  
+    //options( 1 - ON , 0 - OFF)
 var auto_slide = 1;
 var hover_pause = 1;
 var key_slide = 1;
-//speed of auto slide(  
+//speed of auto slide(
 var auto_slide_seconds = 5000;
-/* IMPORTANT: i know the variable is called ...seconds but it's 
+/* IMPORTANT: i know the variable is called ...seconds but it's
 	in milliseconds ( multiplied with 1000) '*/
-/*move the last list item before the first item. The purpose of this is 
+/*move the last list item before the first item. The purpose of this is
 	if the user clicks to slide left he will be able to see the last item.*/
 $('#carousel_ul li:first').before($('#carousel_ul li:last'));
-//check if auto sliding is enabled  
+//check if auto sliding is enabled
 if (auto_slide == 1) {
-    /*set the interval (loop) to call function slide with option 'right' 
+    /*set the interval (loop) to call function slide with option 'right'
 	    and set the interval time to the variable we declared previously */
     var timer = setInterval('slide("right")', auto_slide_seconds);
-    /*and change the value of our hidden field that hold info about 
+    /*and change the value of our hidden field that hold info about
 	    the interval, setting it to the number of milliseconds we declared previously*/
     $('#hidden_auto_slide_seconds').val(auto_slide_seconds);
 }
-//check if hover pause is enabled  
+//check if hover pause is enabled
 if (hover_pause == 1) {
-    //when hovered over the list  
+    //when hovered over the list
     $('#carousel_ul').hover(function () {
-        //stop the interval  
+        //stop the interval
         clearInterval(timer)
     }, function () {
-        //and when mouseout start it again  
+        //and when mouseout start it again
         timer = setInterval('slide("right")', auto_slide_seconds);
     });
 }
-//check if key sliding is enabled  
+//check if key sliding is enabled
 if (key_slide == 1) {
-    //binding keypress function  
+    //binding keypress function
     $(document).bind('keypress', function (e) {
-        //keyCode for left arrow is 37 and for right it's 39 '  
+        //keyCode for left arrow is 37 and for right it's 39 '
         if (e.keyCode == 37) {
-            //initialize the slide to left function  
+            //initialize the slide to left function
             slide('left');
         } else if (e.keyCode == 39) {
-            //initialize the slide to right function  
+            //initialize the slide to right function
             slide('right');
         }
     });
@@ -568,7 +370,7 @@ function slide(where) {
             });
         });
     }
-    //Process Bar 
+    //Process Bar
 var processLine = {
     el: ".process-node",
     init: function () {
