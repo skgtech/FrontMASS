@@ -1,0 +1,19 @@
+{
+  "private": true,
+  "name": "FrontMASS",
+  "version": "0.1.0",
+  "description": "Thessaloniki's Frontend Event",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:skgtech/FrontMASS.git"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
