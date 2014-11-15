@@ -10,7 +10,7 @@
 //              It will only set the 'top' and 'position' of your element, you
 //              might need to adjust the width in some cases.
 
-(function($) {
+;(function($) {
     var defaults = {
             topSpacing: 0,
             bottomSpacing: 0,

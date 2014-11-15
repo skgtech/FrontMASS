@@ -1,13 +1,13 @@
-$(document).ready(function(){
-	
-	
+;;$(document).ready(function(){
+
+
 	var onMobile = false;
 	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) { onMobile = true; }
-	
+
 	if( ( onMobile === false ) ) {
-	
+
 			$(".player").mb_YTPlayer();
-      
+
       $('#video-volume').click(function(e){
 				var bgVideoVol = $('#video-volume .fa');
 				e.preventDefault();
@@ -17,21 +17,21 @@ $(document).ready(function(){
 					bgVideoVol.removeClass('fa-volume-off').addClass('fa-volume-down').attr('title', 'Unmute');
 				}
 			});
-		
+
 	} else {
-			
-			/* as a fallback we add a special class to the header which displays a poster image */ 
+
+			/* as a fallback we add a special class to the header which displays a poster image */
 			$('#home').addClass('video-section');
-			
+
 			/* hide player */
 			$(".player").hide();
-			
+
 			$("#video-volume").hide();
-			
+
 		}
-	
-	
-	
+
+
+
 });
 /*
  * ******************************************************************************
