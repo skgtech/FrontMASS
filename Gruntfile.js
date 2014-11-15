@@ -291,8 +291,6 @@ module.exports = function (grunt) {
   grunt.registerTask('check', [
     'clean:server',
     'jekyll:check',
-    'jshint:all',
-    'csslint:check'
   ]);
 
   grunt.registerTask('build', [
@@ -313,7 +311,6 @@ module.exports = function (grunt) {
 
   grunt.registerTask('deploy', [
     'check',
-    'test',
     'build',
     'buildcontrol'
   ]);
