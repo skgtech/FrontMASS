@@ -15,15 +15,11 @@ module.exports = function (grunt) {
 
   grunt.initConfig({
     // Configurable paths
-    yeoman: {
-      app: 'app',
-      dist: 'dist'
-    },
     watch: {
       jekyll: {
         files: [
-          '<%= yeoman.app %>/**/*.{html,yml,md,mkd,markdown}',
-          '!<%= yeoman.app %>/_bower_components/**/*'
+          'app/**/*.{html,yml,md,mkd,markdown}',
+          '!app/_bower_components/**/*'
         ],
         tasks: ['jekyll:server']
       },
@@ -33,9 +29,9 @@ module.exports = function (grunt) {
         },
         files: [
           '.jekyll/**/*.html',
-          '{.tmp,<%= yeoman.app %>}/css/**/*.css',
-          '{.tmp,<%= yeoman.app %>}/<%= js %>/**/*.js',
-          '<%= yeoman.app %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
+          '{.tmp,app}/css/**/*.css',
+          '{.tmp,app}/<%= js %>/**/*.js',
+          'app/img/**/*.{gif,jpg,jpeg,png,svg,webp}'
         ]
       }
     },
@@ -52,7 +48,7 @@ module.exports = function (grunt) {
           base: [
             '.tmp',
             '.jekyll',
-            '<%= yeoman.app %>'
+            'app'
           ]
         }
       },
@@ -60,7 +56,7 @@ module.exports = function (grunt) {
         options: {
           open: true,
           base: [
-            '<%= yeoman.dist %>'
+            'dist'
           ]
         }
       },
@@ -70,7 +66,7 @@ module.exports = function (grunt) {
             '.tmp',
             '.jekyll',
             'test',
-            '<%= yeoman.app %>'
+            'app'
           ]
         }
       }
@@ -80,11 +76,11 @@ module.exports = function (grunt) {
         files: [{
           dot: true,
           src: [
-            '<%= yeoman.dist %>/*',
+            'dist/*',
             // Running Jekyll also cleans the target directory.  Exclude any
             // non-standard `keep_files` here (e.g., the generated files
             // directory from Jekyll Picture Tag).
-            '!<%= yeoman.dist %>/.git*'
+            '!dist/.git*'
           ]
         }]
       },
@@ -97,11 +93,11 @@ module.exports = function (grunt) {
       options: {
         bundleExec: true,
         config: '_config.yml,_config.build.yml',
-        src: '<%= yeoman.app %>'
+        src: 'app'
       },
       dist: {
         options: {
-          dest: '<%= yeoman.dist %>',
+          dest: 'dist',
         }
       },
       server: {
@@ -118,16 +114,19 @@ module.exports = function (grunt) {
     },
     useminPrepare: {
       options: {
-        dest: '<%= yeoman.dist %>'
+        dest: 'dist'
       },
-      html: '<%= yeoman.dist %>/index.html'
+      html: 'dist/index.html'
     },
     usemin: {
       options: {
-        assetsDirs: '<%= yeoman.dist %>',
+        assetsDirs: 'dist',
       },
-      html: ['<%= yeoman.dist %>/**/*.html'],
-      css: ['<%= yeoman.dist %>/css/**/*.css']
+      html: ['dist/**/*.html'],
+      css: [
+        'dist/css/**/*.css',
+        'dist/stylesheets/**/*.css',
+      ]
     },
     htmlmin: {
       dist: {
@@ -139,9 +138,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: 'dist',
           src: '**/*.html',
-          dest: '<%= yeoman.dist %>'
+          dest: 'dist'
         }]
       }
     },
@@ -164,9 +163,9 @@ module.exports = function (grunt) {
         },
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: 'dist',
           src: '**/*.{jpg,jpeg,png}',
-          dest: '<%= yeoman.dist %>'
+          dest: 'dist'
         }]
       }
     },
@@ -174,9 +173,9 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           expand: true,
-          cwd: '<%= yeoman.dist %>',
+          cwd: 'dist',
           src: '**/*.svg',
-          dest: '<%= yeoman.dist %>'
+          dest: 'dist'
         }]
       }
     },
@@ -185,7 +184,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           dot: true,
-          cwd: '<%= yeoman.app %>',
+          cwd: 'app',
           src: [
             // Jekyll processes and moves HTML and text files.
             // Usemin moves CSS and javascript inside of Usemin blocks.
@@ -199,7 +198,7 @@ module.exports = function (grunt) {
             //'favicon.ico',
             //'apple-touch*.png'
           ],
-          dest: '<%= yeoman.dist %>'
+          dest: 'dist'
         }]
       }
     },
@@ -210,10 +209,10 @@ module.exports = function (grunt) {
       dist: {
         files: [{
           src: [
-            '<%= yeoman.dist %>/js/**/*.js',
-            '<%= yeoman.dist %>/css/**/*.css',
-            '<%= yeoman.dist %>/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
-            '<%= yeoman.dist %>/fonts/**/*.{eot*,otf,svg,ttf,woff}'
+            'dist/js/**/*.js',
+            'dist/css/**/*.css',
+            'dist/img/**/*.{gif,jpg,jpeg,png,svg,webp}',
+            'dist/fonts/**/*.{eot*,otf,svg,ttf,woff}'
           ]
         }]
       }
@@ -235,7 +234,7 @@ module.exports = function (grunt) {
       },
       all: [
         'Gruntfile.js',
-        '<%= yeoman.app %>/js/**/*.js',
+        'app/js/**/*.js',
         'test/spec/**/*.js'
       ]
     },
@@ -245,8 +244,8 @@ module.exports = function (grunt) {
       },
       check: {
         src: [
-          '<%= yeoman.app %>/css/**/*.css',
-          '<%= yeoman.app %>//**/*.scss'
+          'app/css/**/*.css',
+          'app//**/*.scss'
         ]
       }
     },
