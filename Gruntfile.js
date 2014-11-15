@@ -152,7 +152,7 @@ module.exports = function (grunt) {
     cssmin: {
       dist: {
         options: {
-          check: 'gzip'
+          report: 'gzip'
         }
       }
     },
@@ -190,6 +190,7 @@ module.exports = function (grunt) {
             // Usemin moves CSS and javascript inside of Usemin blocks.
             // Copy moves asset files and directories.
             'img/**/*',
+            'css/**/*',
             'images/**/*',
             'fonts/**/*',
             // Like Jekyll, exclude files & folders prefixed with an underscore.
@@ -301,11 +302,11 @@ module.exports = function (grunt) {
     'concurrent:dist',
     'useminPrepare',
     'concat',
-    'cssmin',
+    // 'cssmin',
     'uglify',
     // 'imagemin',
     'svgmin',
-    'filerev',
+    // 'filerev',
     'usemin',
     'htmlmin'
   ]);
