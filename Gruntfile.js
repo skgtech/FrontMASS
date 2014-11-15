@@ -223,7 +223,7 @@ module.exports = function (grunt) {
     buildcontrol: {
       dist: {
         options: {
-          remote: 'origin',
+          remote: 'git@github.com:skgtech/FrontMASS.git',
           branch: 'gh-pages',
           commit: true,
           push: true
