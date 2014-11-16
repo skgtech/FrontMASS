@@ -29,8 +29,8 @@ var mapOptions = {
 
   var contentString = '<div style="max-width: 300px" id="content">'+
       '<div id="bodyContent">'+
-	  '<h4>Jonathan Doe</h4>' +
-      '<p style="font-size: 12px">12, Segun Bagicha, 10th floor, Dhaka, Bangladesh. Lorem ipsum dolor sit amet incididunt ut labore et dolore psum dolor magna aliqua.</p>'+
+	  '<h4>Thessaloniki City Hall</h4>' +
+      '<p style="font-size: 12px">Leoforos Vasileos Georgiou 1, Thessaloniki, 54640, Greece</p>'+
       '</div>'+
       '</div>';
 
