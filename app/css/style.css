@@ -965,7 +965,7 @@ background:#474D5D;
 	line-height: 20px;
 	font-size: 14px;
 	opacity: 0;
-	color: #999;
+	color: #333;
 	-o-transform: scale(0);
 	-moz-transform: scale(0);
 	-ms-transform: scale(0);
@@ -1480,6 +1480,8 @@ ul.timeline {
 	padding: 10px 0;
 	text-align: center;
 }
+
+
 .timeline .note {
 	background: none repeat scroll 0 0 rgba(242, 242, 242, 0.1);
 	border-radius: 12px;
@@ -1497,6 +1499,16 @@ ul.timeline {
 	width: 47.5%;
 	z-index: 550;
 }
+
+.timeline .note.item_right {
+  margin-top: 70px;
+}
+
+#tickets .iframe-container {
+  padding: 20px;
+  background-color: #fff;
+}
+
 .timeline .title + .note {
 	margin-top: -20px;
 }

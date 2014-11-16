@@ -17,7 +17,7 @@ npm install
 Use grunt:
 
 ```shell
-grunt server
+grunt serve
 ```
 
 ## Build
