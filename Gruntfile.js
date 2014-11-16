@@ -264,7 +264,7 @@ module.exports = function (grunt) {
         'jekyll:server'
       ],
       dist: [
-        'copy:dist'
+        'copy'
       ]
     }
   });
