@@ -193,7 +193,7 @@ module.exports = function (grunt) {
             'css/**/*',
             'images/**/*',
             'fonts/**/*',
-            'CNAME',
+            '../CNAME',
             // Like Jekyll, exclude files & folders prefixed with an underscore.
             '!**/_*{,/**}'
             // Explicitly add any files your site needs for distribution here.
@@ -202,6 +202,12 @@ module.exports = function (grunt) {
             //'apple-touch*.png'
           ],
           dest: 'dist'
+        }]
+      },
+      cname: {
+        files:[{
+          src: 'CNAME',
+          dest: 'dist/CNAME',
         }]
       }
     },
