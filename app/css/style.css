@@ -1504,6 +1504,13 @@ ul.timeline {
   margin-top: 70px;
 }
 
+#tickets .container {
+  height: 300px;
+}
+
+#tickets .tickets {
+  background-color: #fff;
+}
 
 .timeline .title + .note {
 	margin-top: -20px;
