@@ -1504,11 +1504,8 @@ ul.timeline {
   margin-top: 70px;
 }
 
-#tickets .container {
-  height: 300px;
-}
-
-#tickets .tickets {
+#tickets .iframe-container {
+  padding: 20px;
   background-color: #fff;
 }
 
