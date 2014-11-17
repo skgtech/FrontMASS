@@ -4,7 +4,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
   <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
   <meta name="description" content="FrontMASS is an annual FrontEnd event happening in Thessaloniki Greece"/>
-  <meta name="author" content="TheThemeLab">
+  <meta name="author" content="SKGTech">
+
+  <meta property="og:title" content="The FrontMASS Event">
+  <meta property="og:site_name" content="frontmass.org">
+  <meta property="og:url" content="http://frontmass.org">
+  <meta property="og:description" content="FrontMASS is an annual FrontEnd event happening in Thessaloniki Greece">
+  <meta property="og:image" content="">
+  <meta property="og:type" content="event">
+
+
+
   <title>FrontMASS - The frontend event of Thessaloniki</title>
   <!-- Favicons -->
   <link rel="shortcut icon" href="img/ico-16.ico">
@@ -192,6 +202,24 @@
 <!-- END REVOLUTION SLIDER -->
 </header>
 <!-- Home Section -->
+
+<div class="fullwidth-section bg-callout">
+  <div class="container">
+    <div class="col-md-12 text-center item_bottom">
+      <h1 class="white padBottom killMargin">Share the love</h1>
+      <span class="right">
+        <div data-href="https://github.com/thanpolas/nodeON" data-width="140" data-layout="standard" data-action="like" data-show-faces="false" data-share="false", data-colorscheme="dark" class="fb-like"></div>
+      </span>
+      <span class="right">
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://frontmass.org" data-text="Join FrontMASS! The biggest #frontend event of Thessaloniki" data-via="skg_tech" data-related="skg_tech" data-hashtags="frontmass">Tweet</a>
+      </span>
+      <span class="right">
+        <div data-action="share" data-annotation="bubble" data-href="https://github.com/thanpolas/nodeON" class="g-plus"></div>
+      </span>
+    </div>
+  </div>
+</div>
+
 <!-- About Section -->
 <section id="about" class="section-content killPadding bg1">
 <div class="container">
@@ -679,6 +707,8 @@
   </div>
 <!-- End Footer Text -->
 </footer>
+<div id="fb-root"></div>
+
 <!-- Back to top -->
 <a href="#" id="back-top"><i class="fa fa-angle-up fa-2x"></i></a>
 
@@ -700,5 +730,33 @@
   <script type="text/javascript" src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <!-- endbuild -->
+  <script type="text/javascript">
+    //
+    // facebook
+    //
+      (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=309825832497899";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+
+
+    //
+    // Google+
+    //
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/platform.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+
+    //
+    // Twitter
+    //
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+  </script>
+
 </body>
 </html>
