@@ -309,8 +309,12 @@ hr {
 	left: 15px;
 	float: left;
 }
-.logo a img {
+.site_logo {
 	max-height: 50px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #fff;
+  font-weight: 600;
 }
 .inner {
 	max-width: 1170px;
