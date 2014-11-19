@@ -24,6 +24,7 @@ template
 *.swp
 ._*
 *~
+*.idea
 
 # Ignore packages #
 *.7z
